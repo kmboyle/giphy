@@ -24,6 +24,20 @@ button, #add-gif{
  }
  footer {
 
+  margin-top:10px;
  	background-color: teal;
 	color: white;
  }
+
+#topTitle, #title{
+  font-size: 36px;
+  font-weight: bold;
+}
+
+#title{
+ border-top: 2px solid teal;
+
+}
+.search{
+  margin-top: 15px;
+}

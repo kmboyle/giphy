@@ -12,6 +12,8 @@ function displayGiphy(){
 
 	$(".gif-pics").empty();
 
+	$("#title").html("Results: " + $(this).attr("reaction-name"));
+
 	$.ajax({
 		url: queryURL,
 		method: "GET"}).done(function(response){
@@ -22,9 +24,18 @@ function displayGiphy(){
 			var image = response.data[i].images.fixed_height_still.url;
 
 
-			var gifDiv=$("<div>");
+			var gifDiv=$("<div class= col-md-6>");
 
 			var rating = response.data[i].rating;
+
+			if (rating === 'r'){
+
+				var pOne=$("<p>").text("Rating: " + rating + " Content Not Viewable.");
+				gifDiv.append(pOne);
+				$(".gif-pics").prepend(gifDiv);
+
+			}
+			else {
 
 			var pOne=$("<p>").text("Rating: " + rating);
 			
@@ -32,15 +43,16 @@ function displayGiphy(){
 			gifDiv.append(pOne);
 
 			
-			var image = $("<img class='gif' data-still="+image+" data-state='still' data-animate="+play+">").attr("src", response.data[i].images.fixed_height_still.url);
+			var image = $("<img class='gif img-responsive' data-still="+image+" data-state='still' data-animate="+play+">").attr("src", response.data[i].images.fixed_height_still.url);
 
 
 			gifDiv.append(image);
 
 			
 			$(".gif-pics").prepend(gifDiv);
-		}
+			}
 
+	}
 		})
 
 }
